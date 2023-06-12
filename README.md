@@ -1,3 +1,3 @@
 # etch-a-sketch
 - fourth project from The Odin Project
-- a resizable etch-a-sketch board
+- this is a re-sizeable etch-a-sketch where squares are color randomly and darkened with multiple interactions
