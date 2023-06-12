@@ -1,18 +1,17 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     gap: 10px;
 }
 
-button {
+.button-change-size {
     height: 30px;
     width: 150px;
 
     align-self: center;
 }
 
-.container {
+.grid {
     border: 10px solid black;
     display: flex;
     flex-wrap: wrap;
@@ -20,5 +19,4 @@ button {
 
 .grid-square {
     aspect-ratio: 1/1;
-    flex: 0 0 6.25%;
 }

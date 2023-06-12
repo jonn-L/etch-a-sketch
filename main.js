@@ -1,31 +1,43 @@
-const container = document.querySelector('.container');
+const grid = document.querySelector('.grid');
 
-function create_grid(user_input=16) {
-
+function create_grid(user_input) {
     let grid_size = user_input*user_input;
 
     for (let i = 0; i < grid_size; i++) {
         const grid_square = document.createElement('div');
         grid_square.classList.add('grid-square');
-        container.appendChild(grid_square);
+        grid_square.setAttribute('style', `flex: 0 0 ${100/user_input}%;`);
+        grid.appendChild(grid_square);
     }
+
+    attachEventListeners();
 }
 
-function handleMouseOver(e) {
-    e.target.style.backgroundColor = 'red';
+function attachEventListeners() {
+    const squares = document.querySelectorAll('.grid-square');
+    squares.forEach(square => square.addEventListener('mouseover', function(e) {
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+
+        e.target.setAttribute('style', `background-color:rgb(${r},${g}, ${b})`);
+    }));
 }
 
-function handleButtonClick(e) {
-    const pop_up = document.createElement('div');
-    pop_up.classList.add('pop-up');
+create_grid(16);
 
-    container.appendChild(pop_up);
-}
-
-const change_size_button = document.querySelector('.change-size');
-change_size_button.addEventListener('onclick', handleButtonClick);
-
-const squares = document.querySelectorAll('.grid-square');
-squares.forEach(square => square.addEventListener('mouseover', handleMouseOver));
-
-create_grid();
+const button_change_size = document.querySelector('.button-change-size');
+button_change_size.addEventListener('click', function() {
+    let user_input = 0;
+    while (true) {
+        user_input = prompt("Please enter the size of the grid:", 16);
+        if (user_input <= 100) {
+            break;
+        }
+        else {
+            alert("Please enter a value smaller or equal to 100");
+        }
+    }
+    grid.replaceChildren();
+    create_grid(user_input);
+});
